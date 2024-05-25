@@ -1,6 +1,5 @@
 ![Layer Unit Tests](https://github.com/yschimpf/bioflax/actions/workflows/run_tests.yml/badge.svg?event=push)
 
-:wq
 # bioflax
 
 Content:
