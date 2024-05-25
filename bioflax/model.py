@@ -46,7 +46,7 @@ class RandomDenseLinearFA(nn.Module):
 
 class RandomDenseLinearKP(nn.Module):
     """
-    Creates a linear layer which uses feedback alignment for the backward pass and uses Kollen-Pollack 
+    Creates a linear layer which uses feedback alignment for the backward pass and uses Kollen-Pollack
     updates to align forward and backward matrices.
     For more detailed information please refer to https://github.com/yschimpf/bioflax/blob/main/docs/README.md#kolen-pollack-6
     ...
@@ -112,6 +112,7 @@ class RandomDenseLinearDFAOutput(nn.Module):
             return nn.vjp(f, module, x)
 
         def bwd(vjp_fn, delta):
+            print("delta shape", delta.shape)
             delta_params, _ = vjp_fn(delta)
             return (delta_params, delta)
 
@@ -134,7 +135,7 @@ class RandomDenseLinearDFAHidden(nn.Module):
         number of output features of the output layer
     activation : Any = nn.relu
         activation function applied to the weighted inputs of the layer
-    initializer : Any   
+    initializer : Any
         initializer for matrices
     """
     features: int
@@ -175,11 +176,11 @@ class BioNeuralNetwork(nn.Module):
     hidden_layers : [int]
         list of hidden layer dimensions
     activations : [str]
-    features : int 
+    features : int
         number of output features
         list of activation functions for hidden layers
     mode : str
-        mode of the network, either "bp" for backpropagation, "fa" for feedback alignment, 
+        mode of the network, either "bp" for backpropagation, "fa" for feedback alignment,
         "dfa" for direct feedback alignment, or "kp" for kollen-pollack
     """
 

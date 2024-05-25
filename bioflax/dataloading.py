@@ -80,6 +80,23 @@ def create_mnist_dataset(seed, batch_size, val_split):
     return train_loader, val_loader, test_loader, d_output, L, d_input,
 
 
+
+def create_carracing_dataset(seed, batch_size, val_split):
+    _name = "carracing"
+    d_input = 1
+    d_output = 3
+    L = 96 * 96
+
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Lambda(lambda x: x.view(L, d_input).T),
+    ])
+
+    # TODO:
+
+
+
+
 def create_random_dataset(seed, batch_size, val_split, input_dim, output_dim, L, train_set_size, test_set_size, dataset, teacher_act):
     """
     Returns pytorch train-, test-, and validation-dataloaders for either a Teacher Network dataset or a sinus dataset.
